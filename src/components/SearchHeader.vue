@@ -1,9 +1,13 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { computed } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+
+const route = useRoute()
+const isHomePage = computed(() => route.name === 'home')
 </script>
 
 <template>
-  <header class="bg-slate-800">
+  <header class="bg-slate-800" :class="{ header: isHomePage }">
     <div class="mx-auto container px-5 py-16">
       <div class="flex justify-between items-center">
         <div>
@@ -28,7 +32,10 @@ import { RouterLink } from 'vue-router'
           </RouterLink>
         </nav>
       </div>
-      <form class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
+      <form
+        class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+        v-if="isHomePage"
+      >
         <div class="space-y-4">
           <label for="ingredient" class="block text-white uppercase font-extrabold text-lg">
             Name or Ingredients
@@ -58,4 +65,10 @@ import { RouterLink } from 'vue-router'
   </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+.header {
+  background-image: url('/img/bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+</style>
