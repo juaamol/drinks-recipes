@@ -7,7 +7,10 @@ const route = useRoute()
 const isHomePage = computed(() => route.name === 'home')
 const store = useDrinksStore()
 
-console.log(store.categories)
+const handleSubmit = () => {
+  // TODO: Validate
+  console.log('validate...')
+}
 </script>
 
 <template>
@@ -38,6 +41,7 @@ console.log(store.categories)
       </div>
       <form
         class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+        @submit.prevent="handleSubmit"
         v-if="isHomePage"
       >
         <div class="space-y-4">
@@ -49,13 +53,20 @@ console.log(store.categories)
             type="text"
             class="p-3 w-full rounded-lg focus:outline-none"
             placeholder="Name or Ingredient. (Vodka, Tequila, ...)"
+            :value="store.search.name"
+            @input="(e) => store.searchByName(e.target.value)"
           />
         </div>
         <div class="space-y-4">
           <label for="category" class="block text-white uppercase font-extrabold text-lg">
             Category
           </label>
-          <select id="category" class="p-3 w-full rounded-lg focus:outline-none">
+          <select
+            id="category"
+            class="p-3 w-full rounded-lg focus:outline-none"
+            :value="store.search.category"
+            @change="(e) => store.searchByCategory(e.target.value)"
+          >
             <option value="">-- Choose --</option>
             <option v-for="category in store.categories" :key="category" value="category">
               {{ category }}
