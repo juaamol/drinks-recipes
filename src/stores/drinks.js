@@ -5,6 +5,7 @@ import APIService from '../services/APIService'
 export const useDrinksStore = defineStore('drinks', () => {
   const categories = ref([])
   const recipes = ref([])
+  const recipe = ref({})
   const search = reactive({
     name: '',
     category: ''
@@ -19,8 +20,13 @@ export const useDrinksStore = defineStore('drinks', () => {
   }
 
   async function getRecipes() {
-    const response = await APIService.searchRecipes(search)
+    const response = await APIService.getRecipes(search)
     recipes.value = response.data.drinks || []
+  }
+
+  async function getRecipe(id) {
+    const response = await APIService.getRecipe(id)
+    recipe.value = (response.data.drinks || [])[0] || {}
   }
 
   onMounted(async function () {
@@ -29,5 +35,14 @@ export const useDrinksStore = defineStore('drinks', () => {
     categories.value = drinks.map((drink) => drink.strCategory)
   })
 
-  return { categories, search, recipes, searchByName, searchByCategory, getRecipes }
+  return {
+    categories,
+    search,
+    recipes,
+    recipe,
+    searchByName,
+    searchByCategory,
+    getRecipes,
+    getRecipe
+  }
 })

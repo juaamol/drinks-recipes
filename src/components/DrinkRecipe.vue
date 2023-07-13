@@ -1,11 +1,18 @@
 <script setup>
 import { defineProps } from 'vue'
+import { useDrinksStore } from '../stores/drinks'
 
 defineProps({
   recipe: {
     type: Object
   }
 })
+
+const store = useDrinksStore()
+
+const handleGetRecipe = () => {
+  store.getRecipe()
+}
 </script>
 <template>
   <div class="border shadow-lg">
@@ -23,8 +30,9 @@ defineProps({
       <button
         type="button"
         class="bg-orange-400 hover:bg-orange-500 mt-5 w-full p-3 font-bold text-white text-lg"
+        @click="handleGetRecipe"
       >
-        Check recipe
+        Get recipe
       </button>
     </div>
   </div>
