@@ -29,5 +29,5 @@ export const useDrinksStore = defineStore('drinks', () => {
     categories.value = drinks.map((drink) => drink.strCategory)
   })
 
-  return { categories, search, searchByName, searchByCategory, getRecipes }
+  return { categories, search, recipes, searchByName, searchByCategory, getRecipes }
 })
