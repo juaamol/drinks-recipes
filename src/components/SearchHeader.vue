@@ -1,9 +1,11 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
+import { useDrinksStore } from '../stores/drinks'
 
 const route = useRoute()
 const isHomePage = computed(() => route.name === 'home')
+const store = useDrinksStore()
 </script>
 
 <template>
