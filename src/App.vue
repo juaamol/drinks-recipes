@@ -1,9 +1,13 @@
 <script setup>
-import Header from './components/Header.vue'
+import { RouterView } from 'vue-router'
+import SearchHeader from './components/SearchHeader.vue'
 </script>
 
 <template>
-  <Header></Header>
+  <SearchHeader></SearchHeader>
+  <main class="container mx-auto mt-10">
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
