@@ -6,6 +6,8 @@ import { useDrinksStore } from '../stores/drinks'
 const route = useRoute()
 const isHomePage = computed(() => route.name === 'home')
 const store = useDrinksStore()
+
+console.log(store.categories)
 </script>
 
 <template>
@@ -55,6 +57,9 @@ const store = useDrinksStore()
           </label>
           <select id="category" class="p-3 w-full rounded-lg focus:outline-none">
             <option value="">-- Choose --</option>
+            <option v-for="category in store.categories" :key="category" value="category">
+              {{ category }}
+            </option>
           </select>
         </div>
         <input
