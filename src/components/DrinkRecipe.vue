@@ -2,7 +2,7 @@
 import { defineProps } from 'vue'
 import { useDrinksStore } from '../stores/drinks'
 
-defineProps({
+const props = defineProps({
   recipe: {
     type: Object
   }
@@ -11,7 +11,7 @@ defineProps({
 const store = useDrinksStore()
 
 const handleGetRecipe = () => {
-  store.getRecipe()
+  store.getRecipe(props.recipe.idDrink)
 }
 </script>
 <template>

@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import SearchHeader from './components/SearchHeader.vue'
-import Modal from './components/Modal.vue'
+import RecipeModal from './components/RecipeModal.vue'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import Modal from './components/Modal.vue'
     <RouterView />
   </main>
 
-  <Modal />
+  <RecipeModal />
 </template>
 
 <style scoped></style>

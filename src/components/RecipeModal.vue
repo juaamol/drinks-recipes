@@ -1,10 +1,15 @@
 <script setup>
-import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { useModalStore } from '../stores/modal'
+import { useDrinksStore } from '../stores/drinks'
+
+const modal = useModalStore()
+const drinks = useDrinksStore()
 </script>
 
 <template>
-  <TransitionRoot as="template" :show="true">
-    <Dialog as="div" class="relative z-10">
+  <TransitionRoot as="template" :show="modal.isShown">
+    <Dialog as="div" class="relative z-10" @close="modal.toggle">
       <TransitionChild
         as="template"
         enter="ease-out duration-300"
@@ -14,7 +19,7 @@ import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessu
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       </TransitionChild>
       <div class="fixed inset-0 z-10 overflow-y-auto">
         <div
@@ -33,9 +38,22 @@ import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessu
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6"
             >
               <div>
-                <div class="mt-3"></div>
+                <div class="mt-3">
+                  <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                    {{ drinks.recipe.strDrink }}
+                  </DialogTitle>
+                  <img :src="drinks.recipe.strDrinkThumb" :alt="drinks.recipe.strDrink" />
+                </div>
               </div>
-              <div class="mt-5 sm:mt-6 flex justify-between gap-4"></div>
+              <div class="mt-5 sm:mt-6 flex justify-between gap-4">
+                <button
+                  type="button"
+                  class="p-3 w-full rounded bg-gray-600 hover:bg-gray-500 font-bold uppercase text-white shadow"
+                  @click="modal.toggle"
+                >
+                  Close
+                </button>
+              </div>
             </DialogPanel>
           </TransitionChild>
         </div>
