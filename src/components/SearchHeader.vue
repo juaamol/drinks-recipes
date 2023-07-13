@@ -9,7 +9,7 @@ const store = useDrinksStore()
 
 const handleSubmit = () => {
   // TODO: Validate
-  console.log('validate...')
+  store.getRecipes()
 }
 </script>
 
@@ -68,7 +68,7 @@ const handleSubmit = () => {
             @change="(e) => store.searchByCategory(e.target.value)"
           >
             <option value="">-- Choose --</option>
-            <option v-for="category in store.categories" :key="category" value="category">
+            <option v-for="category in store.categories" :key="category" :value="category">
               {{ category }}
             </option>
           </select>

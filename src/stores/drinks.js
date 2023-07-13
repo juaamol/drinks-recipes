@@ -4,6 +4,7 @@ import APIService from '../services/APIService'
 
 export const useDrinksStore = defineStore('drinks', () => {
   const categories = ref([])
+  const recipes = ref([])
   const search = reactive({
     name: '',
     category: ''
@@ -17,7 +18,10 @@ export const useDrinksStore = defineStore('drinks', () => {
     search.category = category
   }
 
-  function getRecipes() {}
+  async function getRecipes() {
+    const response = await APIService.searchRecipes(search)
+    recipes.value = response.data.drinks || []
+  }
 
   onMounted(async function () {
     const response = await APIService.getCategories()
