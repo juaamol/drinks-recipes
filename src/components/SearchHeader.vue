@@ -15,7 +15,7 @@ const handleSubmit = () => {
 
 <template>
   <header class="bg-slate-800" :class="{ header: isHomePage }">
-    <div class="mx-auto container px-5 py-16">
+    <div class="mx-auto container px-5 py-12">
       <div class="flex justify-between items-center">
         <div>
           <RouterLink :to="{ name: 'home' }">
