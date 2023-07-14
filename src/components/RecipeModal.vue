@@ -2,9 +2,11 @@
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { useModalStore } from '../stores/modal'
 import { useDrinksStore } from '../stores/drinks'
+import { useFavoritesStore } from '../stores/favorites'
 
 const modal = useModalStore()
 const drinks = useDrinksStore()
+const favorites = useFavoritesStore()
 </script>
 
 <template>
@@ -72,6 +74,13 @@ const drinks = useDrinksStore()
                   @click="modal.toggle"
                 >
                   Close
+                </button>
+                <button
+                  type="button"
+                  class="p-3 w-full rounded bg-orange-600 hover:bg-orange-500 font-bold uppercase text-white shadow"
+                  @click="favorites.toggle"
+                >
+                  Add to Favorites
                 </button>
               </div>
             </DialogPanel>
