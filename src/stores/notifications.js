@@ -6,5 +6,11 @@ export const useNotificationsStore = defineStore('notifications', () => {
   const hasError = ref(false)
   const isShown = ref(false)
 
-  return { text, hasError, isShown }
+  function $reset() {
+    text.value = ''
+    hasError.value = false
+    isShown.value = false
+  }
+
+  return { text, hasError, isShown, $reset }
 })
