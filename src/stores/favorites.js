@@ -9,7 +9,7 @@ export const useFavoritesStore = defineStore('favorites', () => {
   const drinks = useDrinksStore()
   const recipes = computed(() => Object.values(favorites.value).filter((value) => value !== null))
 
-  const updateStorage = () => {
+  function updateStorage() {
     localStorage.setItem(STORAGE_NAME, JSON.stringify(favorites.value))
   }
 
@@ -18,11 +18,15 @@ export const useFavoritesStore = defineStore('favorites', () => {
     favorites.value[drinks.recipe.idDrink] = favorite ? null : drinks.recipe
   }
 
+  function isFavorite(id) {
+    return !!favorites.value[id]
+  }
+
   onMounted(() => {
     favorites.value = JSON.parse(localStorage.getItem(STORAGE_NAME)) ?? {}
   })
 
-  watch(recipes, updateStorage, { deep: true })
+  watch(recipes, () => updateStorage(), { deep: true })
 
-  return { recipes, favorites, toggle }
+  return { recipes, isFavorite, toggle }
 })
