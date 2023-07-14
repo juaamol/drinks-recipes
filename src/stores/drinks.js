@@ -2,6 +2,7 @@ import { ref, onMounted, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import APIService from '../services/APIService'
 import { useModalStore } from './modal'
+import { scrollToMain } from '../utils'
 
 export const useDrinksStore = defineStore('drinks', () => {
   const modal = useModalStore()
@@ -24,6 +25,8 @@ export const useDrinksStore = defineStore('drinks', () => {
   async function getRecipes() {
     const response = await APIService.getRecipes(search)
     recipes.value = response.data.drinks || []
+
+    setTimeout(() => scrollToMain(), 250)
   }
 
   async function getRecipe(id) {
