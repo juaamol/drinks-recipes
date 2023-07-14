@@ -2,14 +2,25 @@
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { useDrinksStore } from '../stores/drinks'
+import { useNotificationsStore } from '../stores/notifications'
 
 const route = useRoute()
 const isHomePage = computed(() => route.name === 'home')
 const store = useDrinksStore()
+const notifications = useNotificationsStore()
 
 const handleSubmit = () => {
-  // TODO: Validate
-  store.getRecipes()
+  const hasOneFieldFilled = Object.values(store.search).some((value) => value)
+
+  if (!hasOneFieldFilled) {
+    notifications.$patch({
+      text: 'Fill at least 1 field',
+      isShown: true,
+      hasError: true
+    })
+  } else {
+    store.getRecipes()
+  }
 }
 </script>
 
@@ -22,16 +33,16 @@ const handleSubmit = () => {
             <img class="w-32" src="/img/logo.svg" alt="Logo" />
           </RouterLink>
         </div>
-        <nav class="flex gap-4">
+        <nav class="flex gap-4 text-white">
           <RouterLink
-            class="text-white uppercase font-bold"
+            class="uppercase font-bold"
             :to="{ name: 'home' }"
             active-class="text-orange-500"
           >
             Home
           </RouterLink>
           <RouterLink
-            class="text-white uppercase font-bold"
+            class="uppercase font-bold"
             :to="{ name: 'favorites' }"
             active-class="text-orange-500"
           >
