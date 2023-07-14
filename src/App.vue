@@ -7,7 +7,7 @@ import AlertNotification from './components/AlertNotification.vue'
 
 <template>
   <SearchHeader></SearchHeader>
-  <main class="container mx-auto mt-10">
+  <main id="main" class="container mx-auto mt-10">
     <RouterView />
   </main>
 
