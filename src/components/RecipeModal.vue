@@ -42,7 +42,27 @@ const drinks = useDrinksStore()
                   <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
                     {{ drinks.recipe.strDrink }}
                   </DialogTitle>
-                  <img :src="drinks.recipe.strDrinkThumb" :alt="drinks.recipe.strDrink" />
+                  <img
+                    class="mx-auto w-96"
+                    :src="drinks.recipe.strDrinkThumb"
+                    :alt="drinks.recipe.strDrink"
+                  />
+
+                  <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                    Ingredients and Measures
+                  </DialogTitle>
+                  <div v-for="ingredient in drinks.recipe.ingredients" :key="ingredient.name">
+                    <p class="text-lg text-gray-500">
+                      {{ ingredient.name }} - {{ ingredient.measure }}
+                    </p>
+                  </div>
+
+                  <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                    Steps
+                  </DialogTitle>
+                  <p class="text-lg text-gray-500">
+                    {{ drinks.recipe.strInstructions }}
+                  </p>
                 </div>
               </div>
               <div class="mt-5 sm:mt-6 flex justify-between gap-4">

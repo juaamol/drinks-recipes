@@ -28,8 +28,21 @@ export const useDrinksStore = defineStore('drinks', () => {
 
   async function getRecipe(id) {
     const response = await APIService.getRecipe(id)
-    recipe.value = (response.data.drinks || [])[0] || {}
-    console.log(recipe.value)
+    const drinkDetails = (response.data.drinks || [])[0] || {}
+    const ingredients = []
+
+    for (let index = 1; index <= 15; index++) {
+      const name = drinkDetails[`strIngredient${index}`]
+      const measure = drinkDetails[`strMeasure${index}`]
+
+      if (name) {
+        ingredients.push({ name, measure })
+      }
+    }
+
+    drinkDetails.ingredients = ingredients
+    recipe.value = drinkDetails
+
     modal.toggle()
   }
 
