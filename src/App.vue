@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import SearchHeader from './components/SearchHeader.vue'
 import RecipeModal from './components/RecipeModal.vue'
+import AlertNotification from './components/AlertNotification.vue'
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import RecipeModal from './components/RecipeModal.vue'
   </main>
 
   <RecipeModal />
+  <AlertNotification />
 </template>
 
 <style scoped></style>
