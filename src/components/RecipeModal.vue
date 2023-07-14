@@ -80,7 +80,8 @@ const favorites = useFavoritesStore()
                   class="p-3 w-full rounded bg-orange-600 hover:bg-orange-500 font-bold uppercase text-white shadow"
                   @click="favorites.toggle"
                 >
-                  Add to Favorites
+                  {{ favorites.favorites[drinks.recipe.idDrink] ? 'Remove from' : 'Add to' }}
+                  Favorites
                 </button>
               </div>
             </DialogPanel>
