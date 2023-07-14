@@ -1,6 +1,10 @@
 # drinks-recipes
 
-This template should help get you started developing with Vue 3 in Vite.
+![image](https://github.com/juaamol/drinks-recipes/assets/50924448/109e7114-6cd2-440e-9ab2-981860dfad86)
+
+
+Try a new drink. Find the recipe here.
+
 
 ## Recommended IDE Setup
 
